@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMS Gateway Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="panel">
+      <h1>SMS Gateway Dashboard</h1>
+      <p class="muted">Admin aj user dashboard so štatistikami, Stripe a SMS queue.</p>
+    </header>
+
+    <section class="panel">
+      <h2>Auth</h2>
+      <div class="grid3">
+        <label>Email <input id="email" placeholder="user@example.com"/></label>
+        <label>Password <input id="password" type="password" placeholder="min 8 znakov"/></label>
+        <label>Full name (register) <input id="fullName" placeholder="Meno Priezvisko"/></label>
+      </div>
+      <div class="buttons">
+        <button id="btnRegister">Register</button>
+        <button id="btnLogin">Login</button>
+      </div>
+      <pre id="authOutput">{}</pre>
+    </section>
+
+    <section class="panel">
+      <h2>User dashboard</h2>
+      <div class="buttons">
+        <button id="btnUserSummary">Load user summary</button>
+      </div>
+      <div class="kpis" id="userKpis"></div>
+      <pre id="userSummaryOutput">{}</pre>
+    </section>
+
+    <section class="panel">
+      <h2>Admin dashboard</h2>
+      <div class="buttons">
+        <button id="btnAdminSummary">Load admin summary</button>
+      </div>
+      <div class="kpis" id="adminKpis"></div>
+      <pre id="adminSummaryOutput">{}</pre>
+    </section>
+
+    <section class="panel">
+      <h2>SMS</h2>
+      <div class="grid3">
+        <label>Recipient (E.164) <input id="recipient" placeholder="+421900000000"/></label>
+        <label>Sender <input id="sender" placeholder="MyBrand"/></label>
+        <label>Message <input id="smsBody" placeholder="Ahoj..."/></label>
+      </div>
+      <div class="buttons">
+        <button id="btnSendSms">Queue SMS</button>
+        <button id="btnRunWorker">Run worker (admin)</button>
+      </div>
+      <pre id="smsOutput">{}</pre>
+    </section>
+
+    <section class="panel">
+      <h2>Stripe</h2>
+      <label>Suma cents <input id="amountCents" value="500" /></label>
+      <button id="btnCheckout">Create checkout session</button>
+      <pre id="checkoutOutput">{}</pre>
+    </section>
+  </main>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

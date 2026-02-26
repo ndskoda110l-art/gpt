@@ -1,0 +1,17 @@
+{
+  "name": "sms-gateway",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "check": "node --check src/server.js && node --check src/app.js && node --check src/db.js && node --check src/stripe.js && node --check src/eurosms.js && node --check src/worker.js && node --check src/auth.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.11.3",
+    "stripe": "^16.9.0"
+  }
+}
