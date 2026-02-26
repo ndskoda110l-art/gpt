@@ -17,6 +17,23 @@ export const query = async (sql, params = []) => {
   return rows;
 };
 
+export const getConnection = async () => pool.getConnection();
+
+export const withTransaction = async (handler) => {
+  const conn = await getConnection();
+  try {
+    await conn.beginTransaction();
+    const result = await handler(conn);
+    await conn.commit();
+    return result;
+  } catch (error) {
+    await conn.rollback();
+    throw error;
+  } finally {
+    conn.release();
+  }
+};
+
 export const closePool = async () => {
   await pool.end();
 };

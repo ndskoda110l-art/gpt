@@ -155,3 +155,25 @@ Hotové časti v tomto repozitári:
 3. `npm run check`
 4. `npm start`
 5. Otvor `http://localhost:3000`
+
+
+## 13) Implementované hardening features
+
+Aktuálne už implementované v kóde:
+- JWT auth + RBAC cez DB role check (`/api/v1/auth/register`, `/api/v1/auth/login`).
+- Password hashing cez `scrypt`.
+- DLR webhook endpoint `POST /api/v1/webhooks/eurosms/dlr` s mapovaním do `sms_messages` a `sms_delivery_events`.
+- Kreditná logika:
+  - pre-check kreditu pri `POST /api/v1/sms/send`,
+  - debit transakcia po úspešnom odoslaní vo workeri.
+- Queue hardening:
+  - retry do `WORKER_MAX_ATTEMPTS`,
+  - backoff,
+  - scheduler loop v server procese.
+- Stripe rozšírenie:
+  - `charge.refunded` coverage,
+  - transakčné spracovanie webhookov + idempotencia.
+- Frontend upgrade:
+  - autentifikácia,
+  - user/admin KPI sekcie,
+  - operácie pre SMS queue + worker + checkout.

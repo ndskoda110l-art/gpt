@@ -11,6 +11,11 @@ export const config = {
   nodeEnv: process.env.NODE_ENV || 'development',
   appPort: parseNumber(process.env.APP_PORT, 3000),
   appUrl: process.env.APP_URL || 'http://localhost:3000',
+  jwtSecret: process.env.JWT_SECRET || 'change_me',
+  worker: {
+    intervalMs: parseNumber(process.env.WORKER_INTERVAL_MS, 15000),
+    maxAttempts: parseNumber(process.env.WORKER_MAX_ATTEMPTS, 3)
+  },
   db: {
     host: process.env.DB_HOST || '127.0.0.1',
     port: parseNumber(process.env.DB_PORT, 3306),
@@ -28,6 +33,7 @@ export const config = {
   eurosms: {
     apiUrl: process.env.EUROSMS_API_URL || '',
     apiKey: process.env.EUROSMS_API_KEY || '',
-    sender: process.env.EUROSMS_SENDER || 'MyBrand'
+    sender: process.env.EUROSMS_SENDER || 'MyBrand',
+    dlrSecret: process.env.EUROSMS_DLR_SECRET || ''
   }
 };
