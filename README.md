@@ -123,3 +123,19 @@ Pozri [`.env.example`](./.env.example).
 ---
 
 Ak chceš, v ďalšom kroku ti viem rovno pripraviť aj **kompletný backend skeleton** (Node.js + MariaDB + Stripe + EuroSMS client + Docker Compose).
+
+
+## 11) Backend kód (už pripravený)
+
+Prvý funkčný backend skeleton je už pridaný v `src/`:
+- `src/server.js` – štart servera
+- `src/app.js` – endpointy (`/health`, dashboard summary, `POST /api/v1/sms/send`)
+- `src/db.js` – MariaDB pool cez `mysql2/promise`
+- `src/config.js` – načítanie `.env` konfigurácie
+
+### Spustenie
+
+1. `npm install`
+2. `cp .env.example .env` a doplniť hodnoty
+3. `npm run check`
+4. `npm start`
