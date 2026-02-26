@@ -139,3 +139,19 @@ Prvý funkčný backend skeleton je už pridaný v `src/`:
 2. `cp .env.example .env` a doplniť hodnoty
 3. `npm run check`
 4. `npm start`
+
+
+## 12) Čo je už nakódované (API + Web)
+
+Hotové časti v tomto repozitári:
+- Stripe endpoint: `POST /api/v1/billing/checkout-session`
+- Stripe webhook: `POST /api/v1/webhooks/stripe`
+- EuroSMS worker endpoint (admin): `POST /api/v1/workers/sms/send-queued`
+- Web dashboard MVP v `public/` (formular pre summary, SMS send, checkout)
+
+### Rýchly štart
+1. `npm install`
+2. `cp .env.example .env`
+3. `npm run check`
+4. `npm start`
+5. Otvor `http://localhost:3000`

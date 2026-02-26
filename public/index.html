@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMS Gateway Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>SMS Gateway – Web dashboard</h1>
+    <p class="muted">MVP web pre user/admin štatistiky + SMS + Stripe checkout.</p>
+
+    <section class="panel">
+      <h2>Nastavenie test hlavičiek</h2>
+      <div class="grid">
+        <label>User ID <input id="userId" value="1" /></label>
+        <label>Rola
+          <select id="userRole">
+            <option value="user">user</option>
+            <option value="admin">admin</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Dashboard summary</h2>
+      <div class="buttons">
+        <button id="btnUserSummary">Načítať user summary</button>
+        <button id="btnAdminSummary">Načítať admin summary</button>
+      </div>
+      <pre id="summaryOutput">{}</pre>
+    </section>
+
+    <section class="panel">
+      <h2>Odoslať SMS</h2>
+      <div class="grid">
+        <label>Recipient <input id="recipient" placeholder="+421900000000" /></label>
+        <label>Sender <input id="sender" placeholder="MyBrand" /></label>
+      </div>
+      <label>Text <textarea id="smsBody" rows="4" placeholder="Správa..."></textarea></label>
+      <button id="btnSendSms">Queue SMS</button>
+      <pre id="smsOutput">{}</pre>
+    </section>
+
+    <section class="panel">
+      <h2>Stripe checkout</h2>
+      <label>Suma (cents) <input id="amountCents" value="500" /></label>
+      <button id="btnCheckout">Vytvoriť checkout session</button>
+      <pre id="checkoutOutput">{}</pre>
+    </section>
+  </main>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
