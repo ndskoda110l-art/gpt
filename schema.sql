@@ -4,6 +4,7 @@ CREATE TABLE users (
   password_hash VARCHAR(255) NOT NULL,
   full_name VARCHAR(255) NULL,
   stripe_customer_id VARCHAR(191) NULL UNIQUE,
+  role ENUM('user', 'admin') NOT NULL DEFAULT 'user',
   is_active TINYINT(1) NOT NULL DEFAULT 1,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -106,4 +107,24 @@ CREATE TABLE stripe_checkout_sessions (
   CONSTRAINT fk_stripe_checkout_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
   INDEX idx_stripe_checkout_user_created (user_id, created_at),
   INDEX idx_stripe_checkout_payment_intent (stripe_payment_intent_id)
+);
+
+
+CREATE TABLE daily_sms_stats (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  stat_date DATE NOT NULL,
+  user_id BIGINT UNSIGNED NULL,
+  total_sms INT NOT NULL DEFAULT 0,
+  sent_sms INT NOT NULL DEFAULT 0,
+  delivered_sms INT NOT NULL DEFAULT 0,
+  failed_sms INT NOT NULL DEFAULT 0,
+  undelivered_sms INT NOT NULL DEFAULT 0,
+  total_cost_cents BIGINT NOT NULL DEFAULT 0,
+  currency CHAR(3) NOT NULL DEFAULT 'EUR',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_daily_stats_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  UNIQUE KEY uq_daily_stats_user_date (stat_date, user_id),
+  INDEX idx_daily_stats_date (stat_date),
+  INDEX idx_daily_stats_user_date (user_id, stat_date)
 );

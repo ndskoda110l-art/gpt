@@ -105,12 +105,20 @@ Pozri [`.env.example`](./.env.example).
 - Pre nové projekty preferuj 3.x RESTful variant, ak je dostupný pre tvoje konto.
 - Pri PHP klientoch môžeš využiť knižnicu od Pexxi (GitHub) namiesto vlastnej implementácie HTTP klienta.
 
-## 9) Nasledujúce kroky
+
+## 9) Dizajn aplikácie a dashboardy
+
+- Návrh počíta s 2 typmi dashboardov: **admin** a **user**.
+- UI štýl: jednoduchý SaaS dashboard (KPI karty + grafy + tabuľky + filtre podľa obdobia).
+- Prehľad metrík a endpointov je v [`docs/dashboards.md`](./docs/dashboards.md).
+- Každý user vidí iba svoje dáta, admin vidí agregované globálne dáta celej platformy.
+
+## 10) Nasledujúce kroky
 
 1. Vybrať stack (napr. Node.js + Express + Prisma).
 2. Implementovať endpointy, worker a DLR webhook handler.
 3. Napojiť Stripe webhook a EuroSMS request podľa ich presnej API dokumentácie.
-4. Pridať admin dashboard (stav správ, kredit, fakturácia).
+4. Implementovať oba dashboardy (admin + user) so štatistikami a RBAC.
 
 ---
 
